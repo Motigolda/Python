@@ -1,0 +1,35 @@
+>>> string = '''<td>&raquo; <a href="?vid=35969">Dilatre</a></td>
+... <td><span class="none">(-23|-11)</span></td>
+... </tr>
+... <tr>
+... <td><a href="?vid=35769">New village</a></td>
+... <td><span class="none">(-24|-10)</span></td>
+... </tr>'''
+>>> string1 = string.split("vid=")
+>>> string1
+['<td>&raquo; <a href="?', '35969">Dilatre</a></td>\n<td><span class="none">(-23|-11)</span></td>\n</tr>\n<tr>\n<td><a href="?', '35769">New village</a></td>\n<td><span class="none">(-24|-10)</span></td>\n</tr>']
+>>> string1.len()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'len'
+>>> string1.len
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'len'
+>>> len(string1)
+3
+>>> string1[1]
+'35969">Dilatre</a></td>\n<td><span class="none">(-23|-11)</span></td>\n</tr>\n<tr>\n<td><a href="?'
+>>> string1[1].split('"')
+['35969', '>Dilatre</a></td>\n<td><span class=', 'none', '>(-23|-11)</span></td>\n</tr>\n<tr>\n<td><a href=', '?']
+>>> string1[1].split('"')[0]
+'35969'
+>>> string1[2].split('"')[0]
+'35769'
+>>> string1[0]
+'<td>&raquo; <a href="?'
+>>> type(string1)
+<type 'list'>
+
+
+GATHER VILLAGES

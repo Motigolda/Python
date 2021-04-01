@@ -1,0 +1,28 @@
+<div id="btn5" class=
+no reports, no messages : ""
+yesreports, no messages : "r"
+no reports, yesmessages : "m"
+yes,yes			: "rm"
+Upgrade your warehouse
+Upgrade your granary
+
+demolish data
+URL_BUILD + 26
+drbid = id of the building to destroy
+class hirarcy
+
+account
+	villages[]
+		buildings[]
+		resources buildings[]
+		troops[]
+	reports[]
+	messages[]
+
+
+
+0 = nothing
+1 = name + nothing
+2 = name + nothing
+
+names = len(options) - 1

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html dir="rtl">
+	<head>
+		<meta charset="utf-8">
+		<style>
+			.text {
+				font-family: Arial;
+			}
+		</style>
+		<title>
+			Lecture Viewer
+		</title>
+		<script src="jquery.js" type="text/javascript"></script>
+		<script>
+			var lect = 'a';
+
+			function toggleVideo(){
+				var currentAttribute = document.getElementById('video_source').getAttribute('src');
+				var newAtt = "lectures/exe9part_";
+				if (currentAttribute == "lectures/exe9part_b.mp4"){
+					newAtt += "a";
+				}
+				else{
+					newAtt += "b";
+				}
+				newAtt += ".mp4";
+				document.getElementById('video_source').setAttribute('src', newAtt);
+				document.getElementById("myVideo").
+				return currentAttribute != document.getElementById('video_source').getAttribute('src');
+			};
+			function toggleVideo1(){
+				var video = document.getElementById('myVideo');
+				var source = document.createElement('source');
+				var src_part_a = 'lectures/exe9part_a.mp4';
+				var src_part_b = 'lectures/exe9part_b.mp4';
+				
+				if (lect == 'a'){
+					source.setAttribute('src', src_part_b);
+					lect = 'b';
+				}
+				else if (lect == 'a'){
+					source.setAttribute('src', src_part_a);
+					lect = 'a';
+				}
+
+				video.appendChild(source);
+				video.play();
+			};
+		</script>
+	</head>
+	<body>	
+		<center>
+			<br><br><br><br>
+			<h1 class="text">שיעור<br>שיעור</h1>
+			<video id="myVideo" onload="renderCurrentDuration()" controls>
+				<source src="lectures/videoplayback1.mp4" type="video/mp4" id="video_source">
+			</video>
+			<br>
+			<div class="text">
+				<table border="0">
+					<tr>
+						<td>שנה מהירות:</td>
+						<td><input type="text" value="1.0" id="speed" size="2" onkeydown="if (event.keyCode == 13) document.getElementById('buttonChangeSpeed').click()"></td>
+						<td><button onclick="setPlaySpeedButton()" id="buttonChangeSpeed">שנה מהירות</button></td>
+					</tr>
+					<tr>
+						<td>שנה אורך סרטון(MM:SS):</td>
+						<td><input type="text" id="wantedDuration" size="2" onkeydown="if (event.keyCode == 13) document.getElementById('wantedDurationButton').click()"/></td>
+						<td><button id="wantedDurationButton" onclick="setPlaySpeed(calcWantedSpeed())">שנה אורך</button></td>
+					</tr>
+					<tr>
+						<td colspan="2"><span id="currentDurationText">אורך נוכחי: 0</span></td>
+					</tr>
+				</table>
+			</div>
+			<script type="text/javascript">
+				var vid = document.getElementById("myVideo");
+				var textCurDuration = document.getElementById("currentDurationText");
+				var wantedDurationField = document.getElementById("wantedDuration");
+				updateView();
+				function setPlaySpeedButton() { 
+					speed = document.getElementById("speed").value;
+					setPlaySpeed(speed);
+				}
+				function setPlaySpeed(speed) { 
+					vid.playbackRate = speed;
+					updateView();
+				}
+				function calcWantedSpeed(){
+					var vidDuration = vid.duration;
+					var wantedDuration = document.getElementById("wantedDuration").value;
+					if (wantedDuration.split(":").length == 2){
+						arrWantedDuration = wantedDuration.split(":");
+						wantedDuration = parseInt(arrWantedDuration[0] * 60) + parseInt(arrWantedDuration[1]);
+					}
+					return vidDuration / wantedDuration;
+				}
+				function updateView() {
+					var raw_seconds = vid.duration / vid.playbackRate;
+					var minutes 	= parseInt(raw_seconds / 60);
+					var seconds 	= parseInt(raw_seconds % 60);
+
+					if(seconds < 10) {
+						seconds = "0" + seconds;
+					}
+
+					textCurDuration.innerHTML 	= "אורך נוכחי: " + minutes + ":" + seconds;
+					wantedDurationField.value 	= minutes + ":" + seconds;
+					speed.value					= vid.playbackRate;
+				}
+			</script> 
+		</center>
+	</body>
+</html>

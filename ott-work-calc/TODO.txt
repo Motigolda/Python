@@ -1,0 +1,3 @@
+Add timer
+add saving to file
+add gui
