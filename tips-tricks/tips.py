@@ -17,4 +17,9 @@ y = 100000000
 x = 1_000_000_000
 y = 100_000_000
 
+print(x) # will print 1000000000, without separation
+print(y) # will print 100000000, without separation
+# printing with separators:
+print(f'{x:,}, {y:,}') # prints 1,000,000,000, 100,000,000
+
         
